@@ -22,9 +22,10 @@ public class ReservationController {
     }
 
     @QueryMapping
-    public Reservation getReservationById(Long id) {
+    public Reservation getReservationById(@Argument Long id) {
         return reservationService.getReservationById(id);
     }
+
 
     @MutationMapping
     public Reservation createReservation(
@@ -42,7 +43,13 @@ public class ReservationController {
     }
 
     @MutationMapping
-    public Reservation updateReservation(Long id, String customerName, String description, String checkIn, String checkOut) {
+    public Reservation updateReservation(
+            @Argument Long id,
+            @Argument String customerName,
+            @Argument String description,
+            @Argument String checkIn,
+            @Argument String checkOut
+    ) {
         Reservation updatedReservation = new Reservation();
         updatedReservation.setCustomerName(customerName);
         updatedReservation.setDescription(description);
@@ -51,8 +58,10 @@ public class ReservationController {
         return reservationService.updateReservation(id, updatedReservation);
     }
 
+
     @MutationMapping
-    public String deleteReservation(Long id) {
+    public String deleteReservation(@Argument Long id) {
         return reservationService.deleteReservation(id);
     }
+
 }
