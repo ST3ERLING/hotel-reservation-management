@@ -43,7 +43,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<String> getAllReservations() {
-        return List.of("Reservation 1", "Reservation 2"); // Mock data, replace with repository logic
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll(); // Mock data, replace with repository logic
     }
 }

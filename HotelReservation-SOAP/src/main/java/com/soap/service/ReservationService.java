@@ -1,5 +1,6 @@
 package com.soap.service;
 
+import com.soap.entity.Reservation;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import java.util.List;
@@ -14,5 +15,5 @@ public interface ReservationService {
     String getReservation(Long id);
 
     @WebMethod
-    List<String> getAllReservations();
+    List<Reservation> getAllReservations();
 }
