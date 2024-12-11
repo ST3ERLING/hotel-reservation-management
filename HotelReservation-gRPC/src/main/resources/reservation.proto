@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.grpc;
+
+service HotelReservationService {
+  rpc CreateReservation (ReservationRequest) returns (ReservationResponse);
+  rpc GetReservation (ReservationRequest) returns (ReservationResponse);
+}
+
+message ReservationRequest {
+  string customer_name = 1;
+  string room_type = 2;
+  int32 nights = 3;
+}
+
+message ReservationResponse {
+  string status = 1;
+  string reservation_id = 2;
+}
