@@ -8,7 +8,7 @@ public class HotelReservationGRpcApplication {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// Create and start the gRPC server
-		int port = 9090; // Choose a port for the server
+		int port = 8083; // Choose a port for the server
 		Server server = ServerBuilder.forPort(port)
 				.addService(new HotelReservationServiceImpl())  // Register the service implementation
 				.build();

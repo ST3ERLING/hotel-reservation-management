@@ -8,7 +8,7 @@ import com.grpc.Reservation.ReservationResponse;
 public class HotelReservationGrpcClient {
 
     public static void main(String[] args) {
-        String target = "localhost:9090";  // Use the port your server is running on
+        String target = "localhost:8083";  // Use the port your server is running on
 
         // Create the channel to connect to the server
         ManagedChannel channel = ManagedChannelBuilder.forTarget(target)
