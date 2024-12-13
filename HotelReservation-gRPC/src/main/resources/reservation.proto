@@ -1,19 +1,62 @@
 syntax = "proto3";
+option java_package = "com.grpc.stubs";
+option java_multiple_files = true;
 
-package com.grpc;
-
-service HotelReservationService {
-  rpc CreateReservation (ReservationRequest) returns (ReservationResponse);
-  rpc GetReservation (ReservationRequest) returns (ReservationResponse);
+// Message representing a reservation
+message Reservation {
+  string id = 1;               // Unique ID for the reservation
+  string customerName = 2;     // Name of the customer
+  string description = 3;      // Description of the reservation
+  string checkIn = 4;          // Check-in date in "yyyy-MM-dd" format
+  string checkOut = 5;         // Check-out date in "yyyy-MM-dd" format
 }
 
+// Message for creating or updating a reservation
 message ReservationRequest {
-  string customer_name = 1;
-  string room_type = 2;
-  int32 nights = 3;
+  string customerName = 1;
+  string description = 2;
+  string checkIn = 3;
+  string checkOut = 4;
 }
 
-message ReservationResponse {
-  string status = 1;
-  string reservation_id = 2;
+// Messages for service requests and responses
+
+// Request to get all reservations
+message GetAllReservationsRequest {}
+
+// Response containing the list of reservations
+message GetAllReservationsResponse {
+  repeated Reservation reservations = 1;
+}
+
+// Request to get a reservation by ID
+message GetReservationByIdRequest {
+  string id = 1;
+}
+
+// Response containing the requested reservation
+message GetReservationByIdResponse {
+  Reservation reservation = 1;
+}
+
+// Request to save a reservation (create or update)
+message SaveReservationRequest {
+  ReservationRequest reservation = 1;
+}
+
+// Response containing the saved reservation
+message SaveReservationResponse {
+  Reservation reservation = 1;
+}
+
+// ReservationService definition
+service ReservationService {
+  // Get all reservations
+  rpc AllReservations(GetAllReservationsRequest) returns (GetAllReservationsResponse);
+
+  // Get a reservation by ID
+  rpc ReservationById(GetReservationByIdRequest) returns (GetReservationByIdResponse);
+
+  // Save a reservation
+  rpc SaveReservation(SaveReservationRequest) returns (SaveReservationResponse);
 }
